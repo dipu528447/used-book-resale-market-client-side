@@ -7,7 +7,8 @@ import Home from "../Components/Home/Home";
 import Login from "../Components/Login/Login";
 import Main from "../Components/Main/Main";
 import Registration from "../Components/Registration/Registration"
-  
+import AddProduct from '../Components/AddProduct/AddProduct'
+import MyProduct from '../Components/MyProduct/MyProduct'
   export const router = createBrowserRouter([
       {
         path: "/",
@@ -26,6 +27,16 @@ import Registration from "../Components/Registration/Registration"
           {
             path: "/dashboard",
             element: <Dashboard></Dashboard>,
+            children:[
+              {
+                path:"/dashboard/addProduct",
+                element:<AddProduct></AddProduct>
+              },
+              {
+                path:"/dashboard/myProduct",
+                element:<MyProduct></MyProduct>
+              }
+            ]
           },
         ],
       },

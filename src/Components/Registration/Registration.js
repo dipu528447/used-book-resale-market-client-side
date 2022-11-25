@@ -1,13 +1,16 @@
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { app } from '../../firebase';
 import { updateProfile } from "firebase/auth";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { UserContext } from '../../App';
 const Registration = () => {
     const [email,setEmail]=useState('');
     const [password,setPassword]=useState('');
     const [name,setName]=useState('');
     const [userType,setUserType]=useState('');
+    const [user, setUser]=useContext(UserContext);
+    const navigate=useNavigate();
     function register(event){
         event.preventDefault();
         const auth = getAuth(app);
@@ -43,10 +46,13 @@ const Registration = () => {
                 .then(res => res.json())
                 .then(data => {
                     console.log(data)
+                    setUser(newUser)
+                    alert('Registration Complete');
+                    navigate('/');
                     
                 })
                 .catch(er => console.error(er));
-            alert('Registration Complete')
+            
         })
         .catch((error) => {
             const errorCode = error.code;

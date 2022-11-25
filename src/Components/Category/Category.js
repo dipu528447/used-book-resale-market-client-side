@@ -32,7 +32,7 @@ const Category = () => {
                             </p>
                             <p className="text-gray-700 text-base mb-4">
                                 {/* {console.log(new Date(product.posted_time))} */}
-                                posted time: {format(new Date(product.posted_time),'PPpp')}
+                                posted time: {format(Date.parse(product.posted_time),'PPpp')}
                             </p>
                             
                                 {/* {console.log(new Date(product.posted_time))} */}

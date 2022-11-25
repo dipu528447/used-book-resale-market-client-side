@@ -19,7 +19,7 @@ const Categories = () => {
             
             {categories.map(category=>{
                 return (
-                    <Link to={`/category/${category._id}`} key={category._id}>
+                    <Link to={`/category/${category.id}`} key={category._id}>
                         <div className="flex justify-center" >
                             <div className="rounded-lg shadow-lg bg-white max-w-sm">
                                 <img className="rounded-t-lg" src={category.category_img} alt=""/>                                

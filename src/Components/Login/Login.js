@@ -49,7 +49,7 @@ function emailLogin(event){
         .then(res=>res.json())
         .then(data=>{
             console.log(data)
-            setUser({...newuser,type:data.userType})
+            setUser({...newuser,type:data.type,name:data.name})
             
         })
         navigate(from,{replace:true})
@@ -72,10 +72,23 @@ function googleLogin(event){
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
         // The signed-in user info.
-        console.log(result.user)
-        
-        
-        setUser({...result.user,type:'buyer'});
+        const newuser={
+            email: result.user.email,
+            password: " ",
+            type: 'buyer',
+            name: result.user.displayName
+        }
+        fetch('http://localhost:5000/addUser', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                },
+                body: JSON.stringify(newuser)
+                })
+                .then(res => res.json())
+                .then(data => console.log(data))
+                .catch(er => console.error(er));
+        setUser(newuser);
         navigate(from,{replace:true})
         
         // ...

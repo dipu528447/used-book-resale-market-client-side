@@ -11,7 +11,26 @@ const NavBar = () => {
     const [loading,setLoading]=useContext(LoadingContext);
     useEffect(()=>{
         const unsub=onAuthStateChanged(auth,currentUser=>{
-            setUser(currentUser);
+            console.log(currentUser)
+            if(currentUser){
+                try{
+                    fetch(`http://localhost:5000/user/${currentUser.email}`)
+                    .then(res=>res.json())
+                    .then(data=>{
+                        console.log(data)
+                        setUser({...currentUser,type:data.type,name:data.name})
+                        
+                    })
+                }
+                catch(err){
+                    console.log(err)
+                }
+                
+            }
+            else{
+                setUser(currentUser);   
+            }
+            
             setLoading(false);
 
         });
