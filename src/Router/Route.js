@@ -1,6 +1,8 @@
 import {
     createBrowserRouter,
   } from "react-router-dom";
+import Category from "../Components/Category/Category";
+import Dashboard from "../Components/Dashboard/Dashboard";
 import Home from "../Components/Home/Home";
 import Login from "../Components/Login/Login";
 import Main from "../Components/Main/Main";
@@ -14,6 +16,16 @@ import Registration from "../Components/Registration/Registration"
           {
             path: "/",
             element: <Home></Home>,
+          },
+          {
+            path: "/category/:id",
+            element: <Category></Category>,
+            loader:  async ({params}) => 
+              fetch(`http://localhost:5000/category/${params.id}`)
+          },
+          {
+            path: "/dashboard",
+            element: <Dashboard></Dashboard>,
           },
         ],
       },

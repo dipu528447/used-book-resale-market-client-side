@@ -18,6 +18,7 @@ const navigate=useNavigate();
 
 useEffect(()=>{
     if(user)
+        
         navigate(from,{replace:true})
 },[user])
 function validation(){
@@ -43,7 +44,14 @@ function emailLogin(event){
     .then((userCredential) => {
         // Signed in 
         const newuser = userCredential.user;
-        setUser(newuser);
+        console.log(newuser)
+        fetch(`http://localhost:5000/user/${newuser.email}`)
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data)
+            setUser({...newuser,type:data.userType})
+            
+        })
         navigate(from,{replace:true})
         // ...
     })
@@ -67,7 +75,7 @@ function googleLogin(event){
         console.log(result.user)
         
         
-        setUser(result.user);
+        setUser({...result.user,type:'buyer'});
         navigate(from,{replace:true})
         
         // ...
