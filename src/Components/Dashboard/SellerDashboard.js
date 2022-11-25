@@ -3,10 +3,10 @@ import { Link, Outlet } from 'react-router-dom';
 import { LoadingContext, UserContext } from '../../App.js';
 const SellerDashboard = () => {
     const [user,setUser]=useContext(UserContext)
-    console.log(user)
+    // console.log(user)
     return (
         <div>
-            <div className="w-60 h-full shadow-md bg-white absolute" id="sidenavSecExample">
+            <div className="w-60 h-1/2 shadow-md bg-white absolute" id="sidenavSecExample">
                 <div className="pt-4 pb-2 px-6">
                     <a href="#!">
                     <div className="flex items-center">

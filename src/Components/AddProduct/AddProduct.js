@@ -32,6 +32,8 @@ const AddProduct = () => {
                     seller_id: user.email,
                     posted_time: new Date(),
                     seller_verified: "1",
+                    advertize:"0",
+                    status:"1",
                     picture: imgData.data.url
                 }
 
