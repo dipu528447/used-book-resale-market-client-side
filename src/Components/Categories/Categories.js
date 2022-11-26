@@ -15,7 +15,7 @@ const Categories = () => {
     
     return (
         
-        <div className='flex justify-around mt-10'>
+        <div className='flex flex-col md:flex-row lg:flex-row justify-around mt-10 mx-auto w-5/6'>
             
             {categories.map(category=>{
                 return (

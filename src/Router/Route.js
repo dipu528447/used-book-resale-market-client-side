@@ -9,6 +9,11 @@ import Main from "../Components/Main/Main";
 import Registration from "../Components/Registration/Registration"
 import AddProduct from '../Components/AddProduct/AddProduct'
 import MyProduct from '../Components/MyProduct/MyProduct'
+import SellerRouter from "../Components/PrivateRoute/SellerRoute";
+import Unauthorized from "../Components/Unauthorized/Unauthorized";
+import BuyerRoute from "../Components/PrivateRoute/BuyerRoute";
+import MyWishList from "../Components/MyWishList/MyWishList"
+import MyOrder from "../Components/MyOrder/MyOrder";
   export const router = createBrowserRouter([
       {
         path: "/",
@@ -30,11 +35,19 @@ import MyProduct from '../Components/MyProduct/MyProduct'
             children:[
               {
                 path:"/dashboard/addProduct",
-                element:<AddProduct></AddProduct>
+                element:<SellerRouter><AddProduct></AddProduct></SellerRouter>
               },
               {
                 path:"/dashboard/myProduct",
-                element:<MyProduct></MyProduct>
+                element:<SellerRouter><MyProduct></MyProduct></SellerRouter>
+              },
+              {
+                path:"/dashboard/myOrder",
+                element:<BuyerRoute><MyOrder></MyOrder></BuyerRoute>
+              },
+              {
+                path:"/dashboard/myWishlist",
+                element:<BuyerRoute><MyWishList></MyWishList></BuyerRoute>
               }
             ]
           },
@@ -43,6 +56,10 @@ import MyProduct from '../Components/MyProduct/MyProduct'
       {
           path:"/login",
           element:<Login></Login>,
+      },
+      {
+        path:"/unauthorized",
+        element:<Unauthorized></Unauthorized>,
       },
       {
           path:"/register",

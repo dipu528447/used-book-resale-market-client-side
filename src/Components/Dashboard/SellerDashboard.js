@@ -6,7 +6,7 @@ const SellerDashboard = () => {
     // console.log(user)
     return (
         <div>
-            <div className="w-60 h-1/2 shadow-md bg-white absolute" id="sidenavSecExample">
+            <div className="w-60 h-5/6 shadow-md bg-white absolute" id="sidenavSecExample">
                 <div className="pt-4 pb-2 px-6">
                     <a href="#!">
                     <div className="flex items-center">

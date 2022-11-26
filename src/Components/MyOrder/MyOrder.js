@@ -1,14 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { json } from 'react-router-dom';
 import { UserContext } from '../../App';
 
-const MyProduct = () => {
+const MyOrder = () => {
     const [user,setUser]=useContext(UserContext);
-    const [myProduct,setMyProduct]=useState([]);
+    const [myorder,setMyorder]=useState([]);
     useEffect(()=>{
-        fetch(`http://localhost:5000/myproducts/${user.email}`)
+        fetch(`http://localhost:5000/myorder/${user.email}`)
         .then(res=>res.json())
-        .then(data=>setMyProduct(data))
+        .then(data=>setMyorder(data))
     },[])
     function advertizeProduct(id){
         console.log(id)
@@ -32,12 +31,13 @@ const MyProduct = () => {
         .then(res => res.json())
         .then(data => {
             console.log(data)
-            setMyProduct(myProduct.filter(pro=>pro._id!==id))
+            setMyorder(myorder.filter(pro=>pro._id!==id))
         })
     }
+        
     return (
         <div>
-            {myProduct.map(product=>{
+            {myorder.map(product=>{
                 return(
                 <div className="flex justify-center py-10" key={product._id}>
                     <div className="flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg">
@@ -83,4 +83,4 @@ const MyProduct = () => {
     );
 };
 
-export default MyProduct;
+export default MyOrder;

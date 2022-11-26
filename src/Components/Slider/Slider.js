@@ -4,7 +4,7 @@ import two from '../../assests/2.jpg'
 import three from '../../assests/3.jpg'
 const Slider = () => {
     return (
-        <div>
+        <div className='w-5/6 mx-auto'>
             <div id="carouselExampleCaptions" className="carousel slide relative" data-bs-ride="carousel">
                 <div className="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4">
                     <button
