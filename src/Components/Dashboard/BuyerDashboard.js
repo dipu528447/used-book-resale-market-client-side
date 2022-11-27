@@ -11,7 +11,7 @@ const BuyerDashboard = () => {
                         <a href="#!">
                         <div className="flex items-center">
                             <div className="shrink-0">
-                            <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp" className="rounded-full w-10" alt="Avatar"/>
+                            <img src={user.photoURL?user.photoURL:"https://mdbcdn.b-cdn.net/img/new/avatars/8.webp"} className="rounded-full w-10" alt="Avatar"/>
                             </div>
                             <div className="grow ml-3">
                             <p className="text-sm font-semibold text-blue-600">{user.name}</p>

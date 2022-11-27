@@ -7,7 +7,7 @@ const BuyerRoute = ({children}) => {
     const [user,setUser] = useContext(UserContext) 
     const [loading,setLoading]=useContext(LoadingContext);
     const location=useLocation();
-    console.log(user)
+    // console.log(user)
     if(loading){
         return(
             <div className="flex justify-center items-center mt-24">

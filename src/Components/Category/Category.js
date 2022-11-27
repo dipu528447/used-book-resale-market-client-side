@@ -1,11 +1,27 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { format } from 'date-fns'
 import { TiTick } from "react-icons/ti";
+import { UserContext } from '../../App';
 const Category = () => {
     const products=useLoaderData();
+    const [user,setUser]=useContext(UserContext)
     const [activeProducts,setActiveProducts]=useState({});
-
+    function bookNow(product){
+        setActiveProducts(product);
+        fetch('http://localhost:5000/addOrder', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json', 
+            },
+            body: JSON.stringify({...product,buyer_id:user.email,buyer_name:user.name,order_time:new Date()})
+        })
+        .then(res => res.json())
+        .then(result =>{
+            console.log(result);
+            
+        })
+    }
     return (
         <div className='grid grid-cols-3 gap-4 my-10'>
             {products.map(product=>{
@@ -59,7 +75,7 @@ const Category = () => {
                                 active:bg-blue-800 active:shadow-lg
                                 transition
                                 duration-150
-                                ease-in-out" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={()=>setActiveProducts(product)}>
+                                ease-in-out" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={()=>bookNow(product)}>
                                     Book Now
                             </button>
 

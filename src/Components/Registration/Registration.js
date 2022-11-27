@@ -34,7 +34,8 @@ const Registration = () => {
                 email:email,
                 password: password,
                 name: name,
-                userType: userType
+                userType: userType,
+                photo: ""
             }
             fetch('http://localhost:5000/addUser', {
                 method: 'POST',

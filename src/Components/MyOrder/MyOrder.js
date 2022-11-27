@@ -3,11 +3,11 @@ import { UserContext } from '../../App';
 
 const MyOrder = () => {
     const [user,setUser]=useContext(UserContext);
-    const [myorder,setMyorder]=useState([]);
+    const [myorders,setMyorders]=useState([]);
     useEffect(()=>{
         fetch(`http://localhost:5000/myorder/${user.email}`)
         .then(res=>res.json())
-        .then(data=>setMyorder(data))
+        .then(data=>setMyorders(data))
     },[])
     function advertizeProduct(id){
         console.log(id)
@@ -22,7 +22,7 @@ const MyOrder = () => {
 
     }
     function deleteProduct(id){
-        fetch(`http://localhost:5000/product/${id}`, {
+        fetch(`http://localhost:5000/order/${id}`, {
             method: 'DELETE', 
             headers:{
                 'content-type': 'application/json', 
@@ -31,13 +31,13 @@ const MyOrder = () => {
         .then(res => res.json())
         .then(data => {
             console.log(data)
-            setMyorder(myorder.filter(pro=>pro._id!==id))
+            setMyorders(myorders.filter(pro=>pro._id!==id))
         })
     }
         
     return (
         <div>
-            {myorder.map(product=>{
+            {myorders.map(product=>{
                 return(
                 <div className="flex justify-center py-10" key={product._id}>
                     <div className="flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg">
@@ -69,7 +69,7 @@ const MyOrder = () => {
                                     <button type="button" className="m-2 inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase
                                      rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 
                                      active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" onClick={()=>advertizeProduct(product._id)}
-                                    >Advertize</button>
+                                    >Pay Now</button>
                                     <button type="button" className="m-2 inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase
                                      rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 
                                      active:shadow-lg transition duration-150 ease-in-out" onClick={()=>deleteProduct(product._id)}>Delete</button>

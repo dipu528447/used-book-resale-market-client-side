@@ -12,6 +12,7 @@ import MyProduct from '../Components/MyProduct/MyProduct'
 import SellerRouter from "../Components/PrivateRoute/SellerRoute";
 import Unauthorized from "../Components/Unauthorized/Unauthorized";
 import BuyerRoute from "../Components/PrivateRoute/BuyerRoute";
+import PrivateRoute from "../Components/PrivateRoute/PrivateRoute";
 import MyWishList from "../Components/MyWishList/MyWishList"
 import MyOrder from "../Components/MyOrder/MyOrder";
   export const router = createBrowserRouter([
@@ -25,29 +26,29 @@ import MyOrder from "../Components/MyOrder/MyOrder";
           },
           {
             path: "/category/:id",
-            element: <Category></Category>,
+            element: <PrivateRoute><Category></Category></PrivateRoute>,
             loader:  async ({params}) => 
               fetch(`http://localhost:5000/category/${params.id}`)
           },
           {
             path: "/dashboard",
-            element: <Dashboard></Dashboard>,
+            element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
             children:[
               {
                 path:"/dashboard/addProduct",
-                element:<SellerRouter><AddProduct></AddProduct></SellerRouter>
+                element:<PrivateRoute><SellerRouter><AddProduct></AddProduct></SellerRouter></PrivateRoute>
               },
               {
                 path:"/dashboard/myProduct",
-                element:<SellerRouter><MyProduct></MyProduct></SellerRouter>
+                element:<PrivateRoute><SellerRouter><MyProduct></MyProduct></SellerRouter></PrivateRoute>
               },
               {
                 path:"/dashboard/myOrder",
-                element:<BuyerRoute><MyOrder></MyOrder></BuyerRoute>
+                element:<PrivateRoute><BuyerRoute><MyOrder></MyOrder></BuyerRoute></PrivateRoute>
               },
               {
                 path:"/dashboard/myWishlist",
-                element:<BuyerRoute><MyWishList></MyWishList></BuyerRoute>
+                element:<PrivateRoute><BuyerRoute><MyWishList></MyWishList></BuyerRoute></PrivateRoute>
               }
             ]
           },

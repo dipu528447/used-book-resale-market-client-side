@@ -30,6 +30,8 @@ const AddProduct = () => {
                     category_id: data.category,
                     condition: data.condition,
                     seller_id: user.email,
+                    seller_name:user.name,
+                    seller_photo:user.photo,
                     posted_time: new Date(),
                     seller_verified: "1",
                     advertize:"0",

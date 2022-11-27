@@ -6,12 +6,12 @@ const SellerDashboard = () => {
     // console.log(user)
     return (
         <div>
-            <div className="w-60 h-5/6 shadow-md bg-white absolute" id="sidenavSecExample">
+            <div className="w-60 h-1/2 shadow-md bg-white absolute" id="sidenavSecExample">
                 <div className="pt-4 pb-2 px-6">
                     <a href="#!">
                     <div className="flex items-center">
                         <div className="shrink-0">
-                        <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp" className="rounded-full w-10" alt="Avatar"/>
+                        <img src={user.photo} className="rounded-full w-10" alt="Avatar"/>
                         </div>
                         <div className="grow ml-3">
                         <p className="text-sm font-semibold text-blue-600">{user.name}</p>

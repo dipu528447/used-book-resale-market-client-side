@@ -49,7 +49,7 @@ function emailLogin(event){
         .then(res=>res.json())
         .then(data=>{
             console.log(data)
-            setUser({...newuser,type:data.type,name:data.name})
+            setUser({...newuser,type:data.type,name:data.name,photo:data.photo})
             
         })
         navigate(from,{replace:true})
@@ -76,7 +76,8 @@ function googleLogin(event){
             email: result.user.email,
             password: " ",
             type: 'buyer',
-            name: result.user.displayName
+            name: result.user.displayName,
+            photo: result.user.photoURL
         }
         fetch('http://localhost:5000/addUser', {
                 method: 'POST',
