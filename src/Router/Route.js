@@ -16,6 +16,7 @@ import PrivateRoute from "../Components/PrivateRoute/PrivateRoute";
 import MyWishList from "../Components/MyWishList/MyWishList"
 import MyOrder from "../Components/MyOrder/MyOrder";
 import Blogs from "../Components/Blogs/Blogs";
+import notFound from '../assests/404.jpg'
   export const router = createBrowserRouter([
       {
         path: "/",
@@ -73,6 +74,6 @@ import Blogs from "../Components/Blogs/Blogs";
       },
       
       {
-        path:'/*', element:<div><h1 className="text-7xl">ERROR:404::Not Found</h1><p className="text-4xl">please go back...</p></div>
+        path:'/*', element:<div><h1 className="text-7xl">ERROR:404::Not Found</h1><p className="text-4xl">please go back...</p><img src={notFound}/></div>
       }
     ]);
