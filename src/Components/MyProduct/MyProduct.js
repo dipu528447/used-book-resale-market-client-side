@@ -47,16 +47,16 @@ const MyProduct = () => {
                         <div className="p-6 flex flex-col justify-start">
                             <h5 className="text-gray-900 text-xl font-medium mb-2">{product.name}</h5>
                                 <p className="text-gray-700 text-base mb-4">
-                                    Original price: {product.original_price}
+                                    Original price: BDT {product.original_price}
                                 </p>
                                 <p className="text-gray-700 text-base mb-4">
-                                    Resale price: {product.resale_price}
+                                    Resale price: BDT {product.resale_price}
                                 </p>
                                 <p className="text-gray-700 text-base mb-4">
                                     location: {product.location}
                                 </p>
                                 <p className="text-gray-700 text-base mb-4">
-                                    year of used: {product.years_of_used}
+                                    year of used: {product.year_of_used}
                                 </p>
                                 <p className="text-gray-700 text-base mb-4">
                                     category: {product.category_id==="1"?"Hardware Engineering Books":product.category_id==="2"?"Software Engineerning Books":"Graphics Designing Books"}

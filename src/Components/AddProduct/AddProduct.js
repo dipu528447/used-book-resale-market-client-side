@@ -1,11 +1,13 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../App';
 const AddProduct = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [user,setUser]=useContext(UserContext)
     const imageHostKey=process.env.REACT_APP_imgbb_key;
-
+    const navigate=useNavigate()
 
     const handleAddProduct=data=>{
         const image = data.image[0];
@@ -48,8 +50,9 @@ const AddProduct = () => {
                 })
                 .then(res => res.json())
                 .then(result =>{
-                    console.log(result);
-                    
+                    // console.log(result);
+                    toast("Product Added successfully");
+                    navigate(0);
                 })
             }
         })
