@@ -15,6 +15,7 @@ import BuyerRoute from "../Components/PrivateRoute/BuyerRoute";
 import PrivateRoute from "../Components/PrivateRoute/PrivateRoute";
 import MyWishList from "../Components/MyWishList/MyWishList"
 import MyOrder from "../Components/MyOrder/MyOrder";
+import Blogs from "../Components/Blogs/Blogs";
   export const router = createBrowserRouter([
       {
         path: "/",
@@ -23,6 +24,10 @@ import MyOrder from "../Components/MyOrder/MyOrder";
           {
             path: "/",
             element: <Home></Home>,
+          },
+          {
+            path:"/blogs",
+            element:<Blogs></Blogs>
           },
           {
             path: "/category/:id",
@@ -66,6 +71,7 @@ import MyOrder from "../Components/MyOrder/MyOrder";
           path:"/register",
           element:<Registration></Registration>
       },
+      
       {
         path:'/*', element:<div><h1 className="text-7xl">ERROR:404::Not Found</h1><p className="text-4xl">please go back...</p></div>
       }

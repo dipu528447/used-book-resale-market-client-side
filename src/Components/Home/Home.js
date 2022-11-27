@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Advertisement from '../Advertisement/Advertisement';
 import Categories from '../Categories/Categories';
 import Gallery from '../Gallery/Gallery';
 import Slider from '../Slider/Slider';
 
 const Home = () => {
+    const [slide, setSlide]=useState([]);
+    useEffect(()=>{
+        fetch('http://localhost:5000/advertise')
+        .then(res=>res.json())
+        .then(data=>setSlide(data))
+    },[])
     return (
         <div>
            <Slider></Slider>
@@ -15,8 +21,8 @@ const Home = () => {
             </div>
            <Categories/>
            
-            <div className='flex flex-col sm:flex-row w-5/6 mx-auto'>
-                <Advertisement/>
+            <div className={` ${slide.length>0?'flex flex-col w-5/6':"flex flex-row w-5/6 justify-center"} sm:flex-row  mx-auto`}>
+                {slide.length>0? <Advertisement slide={slide}/>:<></>}
                 <Gallery></Gallery>
             </div>
            

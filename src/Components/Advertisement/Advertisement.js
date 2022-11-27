@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-const Advertisement = () => {
-    const [slide, setSlide]=useState([]);
-    useEffect(()=>{
-        fetch('http://localhost:5000/advertise')
-        .then(res=>res.json())
-        .then(data=>setSlide(data))
-    },[])
+const Advertisement = props => {
+    const {slide}=props;
     return (
         <div className='w-1/2 mx-auto'> 
         <div className="flex space-x-2 justify-center my-10">
