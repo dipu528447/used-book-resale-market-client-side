@@ -33,7 +33,7 @@ const AddProduct = () => {
                     seller_name:user.name,
                     seller_photo:user.photo,
                     posted_time: new Date(),
-                    seller_verified: "1",
+                    seller_verified: user.verified,
                     advertize:"0",
                     status:"1",
                     picture: imgData.data.url

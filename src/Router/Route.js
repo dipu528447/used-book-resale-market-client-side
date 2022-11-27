@@ -17,6 +17,9 @@ import MyWishList from "../Components/MyWishList/MyWishList"
 import MyOrder from "../Components/MyOrder/MyOrder";
 import Blogs from "../Components/Blogs/Blogs";
 import notFound from '../assests/404.jpg'
+import AllSeller from "../Components/AllSeller/AllSeller";
+import AdminRoute from "../Components/PrivateRoute/AdminRoute"
+import AllBuyers from "../Components/AllBuyers/AllBuyers";
   export const router = createBrowserRouter([
       {
         path: "/",
@@ -55,6 +58,14 @@ import notFound from '../assests/404.jpg'
               {
                 path:"/dashboard/myWishlist",
                 element:<PrivateRoute><BuyerRoute><MyWishList></MyWishList></BuyerRoute></PrivateRoute>
+              },
+              {
+                path:"/dashboard/allseller",
+                element:<PrivateRoute><AdminRoute><AllSeller></AllSeller></AdminRoute></PrivateRoute>
+              },
+              {
+                path:"/dashboard/allbuyer",
+                element:<PrivateRoute><AdminRoute><AllBuyers></AllBuyers></AdminRoute></PrivateRoute>
               }
             ]
           },

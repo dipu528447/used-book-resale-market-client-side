@@ -3,6 +3,8 @@ import { RouterProvider } from 'react-router-dom';
 import './App.css';
 import Main from './Components/Main/Main';
 import { router } from './Router/Route';
+import { Toaster } from 'react-hot-toast';
+
 export const UserContext =createContext();
 export const LoadingContext=createContext();
 function App() {
@@ -16,6 +18,7 @@ function App() {
             <RouterProvider router={router}>
               <Main></Main>
             </RouterProvider>
+            <Toaster></Toaster>
           </div>
         </LoadingContext.Provider>
     </UserContext.Provider>

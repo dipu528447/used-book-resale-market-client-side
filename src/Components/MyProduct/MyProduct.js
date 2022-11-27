@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { json } from 'react-router-dom';
 import { UserContext } from '../../App';
 
@@ -19,7 +20,7 @@ const MyProduct = () => {
             },   
         })
         .then(res=>res.json())
-        .then(data=>console.log(data));
+        .then(data=>toast('Added in Advertisement Section'));
 
     }
     function deleteProduct(id){
@@ -33,6 +34,7 @@ const MyProduct = () => {
         .then(data => {
             console.log(data)
             setMyProduct(myProduct.filter(pro=>pro._id!==id))
+            toast('Deleted Sucessfully')
         })
     }
     return (

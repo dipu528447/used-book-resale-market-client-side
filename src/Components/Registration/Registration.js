@@ -4,6 +4,7 @@ import { app } from '../../firebase';
 import { updateProfile } from "firebase/auth";
 import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../App';
+import toast from 'react-hot-toast';
 const Registration = () => {
     const [email,setEmail]=useState('');
     const [password,setPassword]=useState('');
@@ -34,8 +35,9 @@ const Registration = () => {
                 email:email,
                 password: password,
                 name: name,
-                userType: userType,
-                photo: ""
+                type: userType,
+                photo: "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png",
+                verified:"0"
             }
             fetch('http://localhost:5000/addUser', {
                 method: 'POST',
@@ -48,7 +50,7 @@ const Registration = () => {
                 .then(data => {
                     console.log(data)
                     setUser(newUser)
-                    alert('Registration Complete');
+                    toast('Registration Complete');
                     navigate('/');
                     
                 })

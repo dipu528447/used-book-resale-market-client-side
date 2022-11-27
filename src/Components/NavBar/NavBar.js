@@ -1,5 +1,6 @@
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import React, { useContext, useEffect } from 'react';
+import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { LoadingContext, UserContext } from '../../App';
 import { app } from '../../firebase';
@@ -39,7 +40,7 @@ const NavBar = () => {
     const logout=()=>{
         signOut(auth).then(()=>{
             setUser({});
-            alert('log out successfully');
+            toast('log out successfully');
             navigate('/',{replace:true})
             setLoading(true)
             navigate(0)
