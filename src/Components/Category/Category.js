@@ -1,29 +1,62 @@
 import React, { useContext, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Navigate, useLoaderData, useNavigate } from 'react-router-dom';
 import { format } from 'date-fns'
 import { TiTick } from "react-icons/ti";
 import { UserContext } from '../../App';
+import toast from 'react-hot-toast';
 const Category = () => {
     const products=useLoaderData();
     const [user,setUser]=useContext(UserContext)
     const [activeProducts,setActiveProducts]=useState({});
+    const [meeting,setMeeting]=useState('');
+    const navigate =useNavigate();
+    const [phone,setPhone]=useState('')
     function bookNow(product){
-        setActiveProducts(product);
+        const NewOrder={ 
+            id:product._id,           
+            advertize: product.advertize,
+            category_id: product.category_id,
+            condition: product.condition,
+            location: product.location,
+            mobile: product.mobile,
+            name:product.name,
+            original_price:product.original_price,
+            picture:product.picture,
+            posted_time:product.posted_time,
+            resale_price:product.resale_price,
+            seller_id:product.seller_id,
+            seller_verified:product.seller_verified,
+            status:product.status,
+            year_of_used:product.year_of_used,
+            buyer_id:user.email,
+            buyer_name:user.name,
+            buyer_phone:phone,
+            meeting:meeting,
+            order_time:new Date()
+        }
+        
         fetch('http://localhost:5000/addOrder', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json', 
             },
-            body: JSON.stringify({...product,buyer_id:user.email,buyer_name:user.name,order_time:new Date()})
+            body: JSON.stringify({...NewOrder})
         })
         .then(res => res.json())
         .then(result =>{
             console.log(result);
-            
+            toast('Booking successfully Completed')
+           
         })
     }
+    function setactive(pro){
+        console.log(pro)
+        setActiveProducts(pro)
+    }
+    
     return (
         <div className='grid grid-cols-3 gap-4 my-10'>
+            {console.log(products)}
             {products.map(product=>{
                 return(
                 <div className="flex justify-center" key={product._id}>
@@ -44,7 +77,7 @@ const Category = () => {
                                 Location: {product.location}
                             </p>
                             <p className="text-gray-700 text-base mb-4">
-                                Year of used: {product.years_of_used} years
+                                Year of used: {product.year_of_used} years
                             </p>
                             <p className="text-gray-700 text-base mb-4">
                                 {/* {console.log(new Date(product.posted_time))} */}
@@ -55,7 +88,7 @@ const Category = () => {
                                 
                             <div className="flex space-x-2 justify-start">
                                 <h1 className="text-gray-700 text-base mb-4 ">
-                                    posted by: {product.seller_id}
+                                    posted by: {product.seller_name}
                                 {product.seller_verified==="1" && <span className="inline-block  leading-none text-start whitespace-nowrap align-baseline  text-blue-600 rounded ml-2"><TiTick/></span>}
                                 </h1>
                             </div>
@@ -75,7 +108,9 @@ const Category = () => {
                                 active:bg-blue-800 active:shadow-lg
                                 transition
                                 duration-150
-                                ease-in-out" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={()=>bookNow(product)}>
+                                ease-in-out" data-bs-toggle="modal" data-bs-target="#exampleModal" 
+                                 onClick={()=>setactive(product)}
+                                >
                                     Book Now
                             </button>
 
@@ -94,6 +129,9 @@ const Category = () => {
                                     </div>
                                     <div className="modal-body relative p-4">
                                         <div className="p-6 text-start">
+                                            <form>
+
+                                            
                                             <h5 className="text-gray-900 text-2xl font-medium mb-2">{activeProducts.name}</h5>
                                             
                                             <p className="text-gray-700 text-base mb-4">
@@ -102,7 +140,15 @@ const Category = () => {
                                             <p className="text-gray-700 text-base mb-4">
                                                 Location: {activeProducts.location}
                                             </p>
-                                            
+                                            <p className="text-gray-700 text-base mb-4">
+                                                Buyer Name: {user.name}
+                                            </p>
+                                            <p className="text-gray-700 text-base mb-4">
+                                                Buyer Email: {user.email}
+                                            </p>
+                                            <input type="number" required placeholder="mobile number" className='text-base mb-4' onChange={(event)=>setPhone(event.target.value)}/>
+                                            <input type="text" required placeholder='meeting location' className='text-base mb-4' onChange={(event)=>setMeeting(event.target.value)}/>
+                                            </form>
                                         </div>
                                     </div>
                                     <div
@@ -124,22 +170,23 @@ const Category = () => {
                                         duration-150
                                         ease-in-out" data-bs-dismiss="modal">Close</button>
                                         <button type="button" className="px-6
-                                    py-2.5
-                                    bg-blue-600
-                                    text-white
-                                    font-medium
-                                    text-xs
-                                    leading-tight
-                                    uppercase
-                                    rounded
-                                    shadow-md
-                                    hover:bg-blue-700 hover:shadow-lg
-                                    focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
-                                    active:bg-blue-800 active:shadow-lg
-                                    transition
-                                    duration-150
-                                    ease-in-out
-                                    ml-1">Submit</button>
+                                            py-2.5
+                                            bg-blue-600
+                                            text-white
+                                            font-medium
+                                            text-xs
+                                            leading-tight
+                                            uppercase
+                                            rounded
+                                            shadow-md
+                                            hover:bg-blue-700 hover:shadow-lg
+                                            focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
+                                            active:bg-blue-800 active:shadow-lg
+                                            transition
+                                            duration-150
+                                            ease-in-out
+                                            ml-1" onClick={()=>bookNow(product)}>Submit
+                                        </button>
                                     </div>
                                     </div>
                                 </div>

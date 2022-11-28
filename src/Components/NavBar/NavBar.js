@@ -19,7 +19,7 @@ const NavBar = () => {
                     .then(res=>res.json())
                     .then(data=>{
                         console.log(data)
-                        setUser({...currentUser,type:data.type,name:data.name})
+                        setUser({...currentUser,type:data.type,name:data.name,verified:data.verified,photo:data.photo})
                         
                     })
                 }

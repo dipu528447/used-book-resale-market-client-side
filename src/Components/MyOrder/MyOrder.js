@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { UserContext } from '../../App';
 
 const MyOrder = () => {
@@ -9,19 +10,53 @@ const MyOrder = () => {
         .then(res=>res.json())
         .then(data=>setMyorders(data))
     },[])
-    function advertizeProduct(id){
-        console.log(id)
-        fetch(`http://localhost:5000/product/${id}`,{
-            method:'PUT',
-            headers:{
-                'content-type': 'application/json', 
-            },   
-        })
-        .then(res=>res.json())
-        .then(data=>console.log(data));
 
+
+    function paynow(id,product_id){
+        console.log(id,product_id)
+        fetch(`http://localhost:5000/paynow/${product_id}`)
+        .then(res=>{
+            res.json();
+            console.log(res)
+            
+        })
+        .then(data=>{
+            console.log(data)
+            
+            if(data?.status=="0"){
+                toast('already sold')
+            }
+            else{
+                afterpayment(id,product_id)
+            }
+        });
     }
+
+    function afterpayment(id,product_id){
+       
+            fetch(`http://localhost:5000/paynow/${id}`,{
+                method:'PUT',
+                headers:{
+                    'content-type': 'application/json', 
+                },   
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                toast('paid successfully')
+                fetch(`http://localhost:5000/unavailable/${product_id}`,{
+                method:'PUT',
+                headers:{
+                    'content-type': 'application/json', 
+                },   
+                })
+                .then(res=>res.json())
+                .then(data=>console.log(data));
+            });
+        
+    }
+
     function deleteProduct(id){
+        console.log(id)
         fetch(`http://localhost:5000/order/${id}`, {
             method: 'DELETE', 
             headers:{
@@ -54,7 +89,7 @@ const MyOrder = () => {
                                     location: {product.location}
                                 </p>
                                 <p className="text-gray-700 text-base mb-4">
-                                    year of used: {product.years_of_used}
+                                    year of used: {product.year_of_used}
                                 </p>
                                 <p className="text-gray-700 text-base mb-4">
                                     category: {product.category_id==="1"?"Hardware Engineering Books":product.category_id==="2"?"Software Engineerning Books":"Graphics Designing Books"}
@@ -62,13 +97,11 @@ const MyOrder = () => {
                                 <p className="text-gray-700 text-base mb-4">
                                     Condition: {product.condition==="1"?"Excellent":product.condition==="2"?"Good":"Fair"}
                                 </p>
-                                <p className="text-gray-700 text-base mb-4">
-                                    Status: {product.status==="1"?"Available":"Sold"}
-                                </p>
+                                
                                 <div className='flex'>
                                     <button type="button" className="m-2 inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase
                                      rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 
-                                     active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" onClick={()=>advertizeProduct(product._id)}
+                                     active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" onClick={()=>paynow(product._id,product.id)}
                                     >Pay Now</button>
                                     <button type="button" className="m-2 inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase
                                      rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 

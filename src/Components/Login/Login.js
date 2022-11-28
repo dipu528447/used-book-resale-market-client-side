@@ -49,7 +49,7 @@ function emailLogin(event){
         .then(res=>res.json())
         .then(data=>{
             console.log(data)
-            setUser({...newuser,type:data.type,name:data.name,photo:data.photo})
+            setUser({...newuser,type:data.type,name:data.name,photo:data.photo,verified:data.verified})
             
         })
         navigate(from,{replace:true})

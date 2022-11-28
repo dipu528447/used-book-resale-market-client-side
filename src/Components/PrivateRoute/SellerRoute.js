@@ -18,7 +18,7 @@ const SellerRouter = ({children}) => {
         );
     }
     if(user.type=='seller'){
-        console.log(user)
+        // console.log(user)
         return children
     }
     return <Navigate to='/unauthorized' state={{from:location}}replace></Navigate>

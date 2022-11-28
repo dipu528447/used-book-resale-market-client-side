@@ -40,7 +40,7 @@ const AddProduct = () => {
                     status:"1",
                     picture: imgData.data.url
                 }
-
+                console.log(product)
                 fetch('http://localhost:5000/addProduct', {
                     method: 'POST',
                     headers: {
@@ -52,7 +52,7 @@ const AddProduct = () => {
                 .then(result =>{
                     // console.log(result);
                     toast("Product Added successfully");
-                    navigate(0);
+                    
                 })
             }
         })

@@ -18,7 +18,7 @@ const BuyerRoute = ({children}) => {
         );
     }
     if(user.type==='buyer'){
-        console.log(user)
+        // console.log(user)
         return children
     }
     return <Navigate to='/unauthorized' state={{from:location}}replace></Navigate>

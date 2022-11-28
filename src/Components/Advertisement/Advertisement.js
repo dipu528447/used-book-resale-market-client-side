@@ -13,7 +13,7 @@ const Advertisement = props => {
                 <div className="carousel-inner relative w-full overflow-hidden">
                     {slide.map((sd,index)=>{
                         return (
-                            <div className={`carousel-item ${index==0?"active":""}  relative float-left w-full`}>
+                            <div className={`carousel-item ${index==0?"active":""}  relative float-left w-full`} key={index}>
                                 <img
                                     src={sd.picture}
                                     className="block w-full"
