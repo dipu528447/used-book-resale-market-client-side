@@ -7,13 +7,13 @@ const MyProduct = () => {
     const [user,setUser]=useContext(UserContext);
     const [myProduct,setMyProduct]=useState([]);
     useEffect(()=>{
-        fetch(`http://localhost:5000/myproducts/${user.email}`)
+        fetch(`https://used-books-resale-server-dipu528447.vercel.app/myproducts/${user.email}`)
         .then(res=>res.json())
         .then(data=>setMyProduct(data))
     },[])
     function advertizeProduct(id){
         console.log(id)
-        fetch(`http://localhost:5000/product/${id}`,{
+        fetch(`https://used-books-resale-server-dipu528447.vercel.app/product/${id}`,{
             method:'PUT',
             headers:{
                 'content-type': 'application/json', 
@@ -24,7 +24,7 @@ const MyProduct = () => {
 
     }
     function deleteProduct(id){
-        fetch(`http://localhost:5000/product/${id}`, {
+        fetch(`https://used-books-resale-server-dipu528447.vercel.app/product/${id}`, {
             method: 'DELETE', 
             headers:{
                 'content-type': 'application/json', 

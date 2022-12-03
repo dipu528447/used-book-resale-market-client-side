@@ -7,7 +7,7 @@ import Slider from '../Slider/Slider';
 const Home = () => {
     const [slide, setSlide]=useState([]);
     useEffect(()=>{
-        fetch('http://localhost:5000/advertise')
+        fetch('https://used-books-resale-server-dipu528447.vercel.app/advertise')
         .then(res=>res.json())
         .then(data=>setSlide(data))
     },[])

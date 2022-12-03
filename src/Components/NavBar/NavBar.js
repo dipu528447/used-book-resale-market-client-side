@@ -15,7 +15,7 @@ const NavBar = () => {
             console.log(currentUser)
             if(currentUser){
                 try{
-                    fetch(`http://localhost:5000/user/${currentUser.email}`)
+                    fetch(`https://used-books-resale-server-dipu528447.vercel.app/user/${currentUser.email}`)
                     .then(res=>res.json())
                     .then(data=>{
                         console.log(data)

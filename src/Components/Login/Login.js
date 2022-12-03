@@ -45,7 +45,7 @@ function emailLogin(event){
         // Signed in 
         const newuser = userCredential.user;
         console.log(newuser)
-        fetch(`http://localhost:5000/user/${newuser.email}`)
+        fetch(`https://used-books-resale-server-dipu528447.vercel.app/user/${newuser.email}`)
         .then(res=>res.json())
         .then(data=>{
             console.log(data)
@@ -79,7 +79,7 @@ function googleLogin(event){
             name: result.user.displayName,
             photo: result.user.photoURL
         }
-        fetch('http://localhost:5000/addUser', {
+        fetch('https://used-books-resale-server-dipu528447.vercel.app/addUser', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',

@@ -35,7 +35,7 @@ const Category = () => {
             order_time:new Date()
         }
         
-        fetch('http://localhost:5000/addOrder', {
+        fetch('https://used-books-resale-server-dipu528447.vercel.app/addOrder', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json', 

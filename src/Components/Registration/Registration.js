@@ -39,7 +39,7 @@ const Registration = () => {
                 photo: "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png",
                 verified:"0"
             }
-            fetch('http://localhost:5000/addUser', {
+            fetch('https://used-books-resale-server-dipu528447.vercel.app/addUser', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',

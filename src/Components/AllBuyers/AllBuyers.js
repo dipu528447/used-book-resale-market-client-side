@@ -4,12 +4,12 @@ import toast from 'react-hot-toast';
 const AllBuyers = () => {
     const [buyers,setBuyers]=useState([])
     useEffect(()=>{
-        fetch('http://localhost:5000/allBuyers')
+        fetch('https://used-books-resale-server-dipu528447.vercel.app/allBuyers')
         .then(res=>res.json())
         .then(data=>setBuyers(data))
     },[])
     function deleteUser(email){
-        fetch(`http://localhost:5000/deleteUser/${email}`, {
+        fetch(`https://used-books-resale-server-dipu528447.vercel.app/deleteUser/${email}`, {
             method: 'DELETE', 
             headers:{
                 'content-type': 'application/json', 

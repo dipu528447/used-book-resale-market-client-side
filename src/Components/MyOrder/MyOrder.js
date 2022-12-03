@@ -6,7 +6,7 @@ const MyOrder = () => {
     const [user,setUser]=useContext(UserContext);
     const [myorders,setMyorders]=useState([]);
     useEffect(()=>{
-        fetch(`http://localhost:5000/myorder/${user.email}`)
+        fetch(`https://used-books-resale-server-dipu528447.vercel.app/myorder/${user.email}`)
         .then(res=>res.json())
         .then(data=>setMyorders(data))
     },[])
@@ -14,7 +14,7 @@ const MyOrder = () => {
 
     function paynow(id,product_id){
         console.log(id,product_id)
-        fetch(`http://localhost:5000/paynow/${product_id}`)
+        fetch(`https://used-books-resale-server-dipu528447.vercel.app/paynow/${product_id}`)
         .then(res=>{
             res.json();
             console.log(res)
@@ -34,7 +34,7 @@ const MyOrder = () => {
 
     function afterpayment(id,product_id){
        
-            fetch(`http://localhost:5000/paynow/${id}`,{
+            fetch(`https://used-books-resale-server-dipu528447.vercel.app/paynow/${id}`,{
                 method:'PUT',
                 headers:{
                     'content-type': 'application/json', 
@@ -43,7 +43,7 @@ const MyOrder = () => {
             .then(res=>res.json())
             .then(data=>{
                 toast('paid successfully')
-                fetch(`http://localhost:5000/unavailable/${product_id}`,{
+                fetch(`https://used-books-resale-server-dipu528447.vercel.app/unavailable/${product_id}`,{
                 method:'PUT',
                 headers:{
                     'content-type': 'application/json', 
@@ -57,7 +57,7 @@ const MyOrder = () => {
 
     function deleteProduct(id){
         console.log(id)
-        fetch(`http://localhost:5000/order/${id}`, {
+        fetch(`https://used-books-resale-server-dipu528447.vercel.app/order/${id}`, {
             method: 'DELETE', 
             headers:{
                 'content-type': 'application/json', 

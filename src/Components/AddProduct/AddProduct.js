@@ -41,7 +41,7 @@ const AddProduct = () => {
                     picture: imgData.data.url
                 }
                 console.log(product)
-                fetch('http://localhost:5000/addProduct', {
+                fetch('https://used-books-resale-server-dipu528447.vercel.app/addProduct', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json', 

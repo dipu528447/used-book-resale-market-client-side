@@ -37,7 +37,7 @@ import AllBuyers from "../Components/AllBuyers/AllBuyers";
             path: "/category/:id",
             element: <PrivateRoute><Category></Category></PrivateRoute>,
             loader:  async ({params}) => 
-              fetch(`http://localhost:5000/category/${params.id}`)
+              fetch(`https://used-books-resale-server-dipu528447.vercel.app/category/${params.id}`)
           },
           {
             path: "/dashboard",
