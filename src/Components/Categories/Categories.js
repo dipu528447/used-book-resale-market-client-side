@@ -17,7 +17,8 @@ const Categories = () => {
         
         <div className='flex flex-col md:flex-row lg:flex-row justify-around mt-10 mx-auto w-5/6'>
             
-            {categories.map(category=>{
+            {categories.length>0?<>
+                {categories.map(category=>{
                 return (
                     <Link to={`/category/${category.id}`} key={category._id}>
                         <div className="flex justify-center" >
@@ -34,6 +35,13 @@ const Categories = () => {
                     </Link>
                 );
             })}
+            </>:<>
+            <div className="flex justify-center items-center">
+                <div className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            </>}
         </div>
     );
 };

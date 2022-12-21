@@ -9,7 +9,8 @@ const Advertisement = props => {
                     Advertisement
                 </h2>
             </div>
-            <div id="carouselExampleControls" className="carousel slide relative" data-bs-ride="carousel">
+            {slide.length>0?<>
+                <div id="carouselExampleControls" className="carousel slide relative" data-bs-ride="carousel">
                 <div className="carousel-inner relative w-full overflow-hidden">
                     {slide.map((sd,index)=>{
                         return (
@@ -42,6 +43,13 @@ const Advertisement = props => {
                     <span className="visually-hidden">Next</span>
                 </button>
             </div>
+            </>:<>
+            <div className="flex justify-center items-center">
+                <div className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            </>}
         </div>
     );
 };

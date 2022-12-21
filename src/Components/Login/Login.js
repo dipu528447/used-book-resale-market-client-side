@@ -6,6 +6,7 @@ import { app } from '../../firebase.js';
 import { FaGoogle } from 'react-icons/fa';
 import { LoadingContext, UserContext } from '../../App.js';
 import one from '../../assests/1.jpg'
+import { toast } from 'react-hot-toast';
 const Login = () => {
 const [email,setEmail]=useState('');
 const [password,setPassword]=useState('');
@@ -59,6 +60,7 @@ function emailLogin(event){
         const errorCode = error.code;
         const errorMessage = error.message;
         setMsg(errorMessage)
+        toast(errorMessage)
     });
 
 }
@@ -102,6 +104,7 @@ function googleLogin(event){
         // The AuthCredential type that was used.
         const credential = GoogleAuthProvider.credentialFromError(error);
         setMsg(errorMessage)
+        toast(errorMessage)
         // ...
     });
 }

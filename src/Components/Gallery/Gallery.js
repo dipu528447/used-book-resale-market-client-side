@@ -14,7 +14,8 @@ const Gallery = () => {
                     Gallery
                 </h2>
             </div>
-            <section className="overflow-hidden text-gray-700 ">
+            {gallery.length>0?<>
+                <section className="overflow-hidden text-gray-700 ">
                 <div className="container px-5 py-2 mx-auto lg:pt-12 lg:px-32">
                     <div className="flex flex-wrap -m-1 md:-m-2">
                         {gallery.map((pic,index)=>{
@@ -30,6 +31,13 @@ const Gallery = () => {
                     </div>
                 </div>
             </section>
+            </>:<>
+            <div className="flex justify-center items-center">
+                <div className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            </>}
         </div>
     );
 };

@@ -57,6 +57,8 @@ const Category = () => {
     return (
         <div className='grid grid-cols-3 gap-4 my-10'>
             {console.log(products)}
+            {products.length>0?
+            <>
             {products.map(product=>{
                 return(
                 <div className="flex justify-center" key={product._id}>
@@ -196,7 +198,12 @@ const Category = () => {
                     </div>
                 </div>
                 )
-            })}
+            })}</>:<>
+            <div className="flex justify-center items-center">
+                <div className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
+            </div></>}
             
         </div>
     );
